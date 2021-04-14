@@ -46,7 +46,7 @@ function StyleSelector({
   const fixTypo = (str) => {
     let beginning = str.slice(0, 1);
     let end = str.slice(2);
-    if (beginning !== "h") {
+    if (beginning === "u") {
 			return `h${end}`
     } else {
    		 return str
@@ -158,6 +158,7 @@ StyleSelector.propTypes = {
   updateSale: PropTypes.func,
   updatePhotos: PropTypes.func,
   selectPhoto: PropTypes.func,
+  darkMode: PropTypes.bool,
 };
 
 StyleSelector.defaultProps = {
@@ -168,6 +169,7 @@ StyleSelector.defaultProps = {
   updateSale: null,
   updatePhotos: null,
   selectPhoto: null,
+  darkMode: false,
 };
 
 export default StyleSelector;

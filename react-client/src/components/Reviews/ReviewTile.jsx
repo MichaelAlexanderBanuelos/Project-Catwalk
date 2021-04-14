@@ -14,10 +14,12 @@ const ReviewTile = ({
   const [isHighlighting, setIsHighlighting] = useState(false);
 
   useEffect(() => {
+    setLongerThan250(false);
     if (review.body.length > 250) {
       setLongerThan250(true);
     }
   }, [review]);
+  
   useEffect(() => {
     if (searchQuery.length > 2) {
       setIsHighlighting(true);
@@ -30,9 +32,7 @@ const ReviewTile = ({
   if (!longerThan250) {
     reviewText = (
       <div>
-        {' '}
         {review.body}
-        {' '}
       </div>
     );
   } else {
@@ -128,9 +128,7 @@ const ReviewTile = ({
             )
             : (
               <div>
-                {' '}
                 {review.body}
-                {' '}
               </div>
             )}
       </div>

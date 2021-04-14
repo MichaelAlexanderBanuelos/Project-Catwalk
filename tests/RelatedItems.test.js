@@ -2,7 +2,7 @@ import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import {
-  render, fireEvent, waitFor, screen, getByText, toBeInTheDocument
+  render, waitFor, screen, getByText, toBeInTheDocument, getByRole
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import RelatedItems from '../react-client/src/components/related items/RelatedItemsTest.jsx';
@@ -23,14 +23,35 @@ const fetch = () => {
 
 test('should receive data from a get request and pass it to a component', async () => {
   const styles = await fetch();
-  expect(styles.name).toEqual('Forest Green & Black');
+  expect(styles[0].name).toEqual('Forest Green & Black');
   const { container, getByText } = render (<RelatedItems styles={styles} />);
 })
 
-test('should render name and price', async() => {
+test('should render a title', async() => {
   const { container, getByText } = render(<RelatedItems />)
-
   await waitFor(() => {
-    expect(getByText('Forest Green & Black')).toBeInTheDocument()
+    expect(getByText('Related Products')).toBeInTheDocument()
+  })
+})
+
+test('should render category', async() => {
+  const styles = await fetch();
+  expect(styles[0].category).toEqual('kicks')
+})
+
+test('should render name', async() => {
+  const styles = await fetch();
+  expect(styles[0].name).toEqual('Forest Green & Black')
+})
+
+test('should render price', async() => {
+  const styles = await fetch();
+  expect(styles[0].original_price).toEqual(140)
+})
+
+test('should render a Compare button', async () => {
+  const { container, getByRole } = render(<RelatedItems />)
+  await waitFor(() => {
+    expect(getByRole('button')).toBeInTheDocument()
   })
 })

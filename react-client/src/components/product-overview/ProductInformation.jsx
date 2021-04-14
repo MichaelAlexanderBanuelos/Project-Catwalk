@@ -3,10 +3,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { SocialIcon } from 'react-social-icons';
 import Stars from '../Reviews/Ratings/Stars.jsx';
+import axios from 'axios'
 
 function ProductInformation({
   product,
@@ -14,6 +15,23 @@ function ProductInformation({
   sale,
   avgRating,
 }) {
+
+  const [reviewCount, changeReviewCount] = useState(0);
+
+  const getReviewCount = () => {
+    axios.get(`/api/reviews/?product_id=${product.id}&count=100`)
+      .then((data) => {
+        changeReviewCount(data.data.results.length);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    if (product.hasOwnProperty('id')) {
+      getReviewCount();
+    }
+  }, [product])
+
   const renderPrice = () => {
     if (sale) {
       return (
@@ -37,13 +55,20 @@ function ProductInformation({
     );
   };
 
-  const renderSocialMediaIcons = () => (
-    <div widgetname="overview" className="social-media-links">
-      <SocialIcon widgetname="overview" style={{ marginRight: 2, height: '2rem', width: '2rem' }} url="http://facebook.com" />
-      <SocialIcon widgetname="overview" style={{ marginRight: 2, height: '2rem', width: '2rem' }} url="http://twitter.com" />
-      <SocialIcon widgetname="overview" style={{ marginRight: 2, height: '2rem', width: '2rem' }} url="http://pinterest.com" />
+  const renderSocialMediaIcons = () => {
+    const socialIconStyle = { marginRight: '0.25rem', height: '2rem', width: '2rem' };
+    const socials = ["http://facebook.com", "http://twitter.com", "http://pinterest.com"]
+    return <div widgetname="overview" className="social-media-links">
+      {socials.map((site, i) => {
+        return <SocialIcon
+          key={i}
+          target="_blank"
+          widgetname="overview"
+          style={socialIconStyle}
+          url={site} />
+      })}
     </div>
-  );
+  };
 
   const scrollToReviews = () => {
     document.querySelector('.reviews-list').scrollIntoView({
@@ -58,10 +83,13 @@ function ProductInformation({
       {product.hasOwnProperty('id')
         ? (
           <div widgetname="overview" className="product-info-side">
-            <div widgetname="overview" className="product-rating">
-              <Stars avgRating={avgRating} />
-              <span widgetname="overview" id="reviews-link" onClick={() => scrollToReviews()}>Read all reviews</span>
-            </div>
+            {reviewCount > 0 ?
+              <div widgetname="overview" className="product-rating">
+                <Stars avgRating={avgRating} />
+                <span widgetname="overview" id="reviews-link" onClick={() => scrollToReviews()}>Read all {reviewCount} reviews</span>
+              </div>
+              : null
+            }
             <div widgetname="overview" className="product-category">
               {uppercase(product.category)}
             </div>
@@ -79,8 +107,8 @@ function ProductInformation({
 
 ProductInformation.propTypes = {
   product: PropTypes.object,
-  price: PropTypes.number,
-  sale: PropTypes.number,
+  price: PropTypes.any,
+  sale: PropTypes.any,
   avgRating: PropTypes.number,
 };
 

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItemCard from './RelatedItemCard.jsx';
 
-// need a function to clear out or reset dataArr when a new product is clicked
-
 function RelatedItemsElements(props) {
   const [dataArr, updateDataArr] = useState([]);
   const [stylesData, updateStylesData] = useState([]);
@@ -21,7 +19,6 @@ function RelatedItemsElements(props) {
       axios.get(`/api/shared/products/${item}`)
         .then((results) => (uniqueItems.push(results.data)))
         .then(() => (updateDataArr(uniqueItems)))
-        // .then(() => console.log('from 3'))
         .catch((err) => (console.log(err)))
     });
   };

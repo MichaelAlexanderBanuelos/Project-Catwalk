@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import firebase from '../../../../firebase.js'
+import firebase from '../../../../../firebase.js'
 
-const AnswerModals = (props) => {
+const AnswerModalsTest = (props) => {
   const [answer, setAnswer] = useState('')
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('');
@@ -145,8 +145,8 @@ const AnswerModals = (props) => {
       >
         <div className="AnswerModal">
           <div className="ModalHeader">
-            <h1 widgetname="QA" style={{ paddingTop: '5%' }}>Submit your answer</h1>
-            <h3 widgetname="QA">
+            <h1 widgetName="QA" style={{ paddingTop: '5%' }}>Submit your answer</h1>
+            <h3 widgetName="QA">
               {props.question.question_body}
               :
               {props.product.name}
@@ -154,33 +154,33 @@ const AnswerModals = (props) => {
           </div>
           <form onSubmit={submitHandler}>
             <div className="modalTitle">
-              <p widgetname="QA">
+              <p widgetName="QA">
                 Your Answer
                 <span style={{color: 'red'}}> *</span>
               </p>
               <label>
-                <textarea widgetname="QA" onChange={(e) => setAnswer(e.target.value)} style={{ width: '100%', height: '75px' }} maxLength="1000" value={answer} />
+                <textarea widgetName="QA" onChange={(e) => setAnswer(e.target.value)} style={{ width: '100%', height: '75px' }} maxLength="1000" value={answer} />
               </label>
             </div>
             <div>
               <label>
                 What is your nickname?
                 <span style={{ color: 'red' }}> *</span>
-                <input widgetname="QA" type="text" style={{ width: '80%' }} placeholder="Example: jack543!" onChange={(e)=> setNickname(e.target.value)} value={nickname} />
+                <input widgetName="QA" type="text" style={{ width: '80%' }} placeholder="Example: jack543!" onChange={(e)=> setNickname(e.target.value)} value={nickname} />
               </label>
-              <p widgetname="QA" style={{ fontStyle: 'italic' }}>For privacy reasons, do not use your full name or email address</p>
+              <p widgetName="QA" style={{ fontStyle: 'italic' }}>For privacy reasons, do not use your full name or email address</p>
             </div>
             <div>
-              <p widgetname="QA">
+              <p widgetName="QA">
                 Your Email
                 <span style={{ color: 'red' }}> *</span>
               </p>
               <label>
-                <input widgetname="QA" type="text" style={{ width: '80%' }} placeholder="Example: jack@email.com" onChange={(e)=> setEmail(e.target.value)} value={email} />
+                <input widgetName="QA" type="text" style={{ width: '80%' }} placeholder="Example: jack@email.com" onChange={(e)=> setEmail(e.target.value)} value={email} />
               </label>
-              <p widgetname="QA" style={{ fontStyle: 'italic' }}>For authentication reasons, you will not be emailed</p>
+              <p widgetName="QA" style={{ fontStyle: 'italic' }}>For authentication reasons, you will not be emailed</p>
             </div>
-            <input widgetname="QA" style={{ borderRadius: '5px', height: '50px', width: '100px', float: 'right' }}type="submit" value="Submit" />
+            <input widgetName="QA" style={{ borderRadius: '5px', height: '50px', width: '100px', float: 'right' }}type="submit" value="Submit" />
             {imageDisplay()}
           </form>
         </div>
@@ -190,4 +190,4 @@ const AnswerModals = (props) => {
   );
 };
 
-export default AnswerModals;
+export default AnswerModalsTest;

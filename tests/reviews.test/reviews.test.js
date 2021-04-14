@@ -40,3 +40,20 @@ test('it should only display items that are being searched', async () => {
     expect(getByText(/dark/i)).toBeInTheDocument();
   });
 })
+
+test('it should be able to post a review to the database', async () => {
+  const mockAlert = jest.spyOn(window, 'alert');
+  const metadata = await axios.get('/api/reviews/meta').then(data => data.data);
+  const { getByText, getByPlaceholderText } = render(<ReviewsTest avgRating={3.75} metadata={metadata} getRatings={mockGetRatings} currentProduct={{id: 5}} />)
+  const addReviewButton = getByText(/add a review/i);
+  userEvent.click(addReviewButton);
+  userEvent.selectOptions(screen.getByTestId('ratings'), ['1']);
+  userEvent.selectOptions(screen.getByTestId('recommend'), ['false']);
+  userEvent.type(screen.getByLabelText('Review summary:'), 'fast, efficient and cheap!');
+  userEvent.type(screen.getByPlaceholderText('Why did you like the product or not?'), 'lorem etsum ipsum dolor pain so much pain yadayadayadayadayadayadyadyady');
+  userEvent.type(screen.getByLabelText('Review summary:'), 'fast, efficient and cheap!');
+  userEvent.type(screen.getByPlaceholderText('Example: jackson11!'), 'react testing lib');
+  userEvent.type(screen.getByPlaceholderText('Example: jackson11@email.com'), 'wooshoo@gmail.com');
+  userEvent.click(screen.getByText('Submit'));
+  await waitFor(()=> expect(mockAlert).toHaveBeenCalledTimes(1));
+})

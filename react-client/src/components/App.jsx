@@ -12,7 +12,7 @@ import QA from './Questions-Answers/QA.jsx';
 import ClickTracker from './ClickTracker.jsx';
 
 function App() {
-  const [selectedProduct, updateSelectedProduct] = useState([]);
+  const [selectedProduct, updateSelectedProduct] = useState({});
   const [metadata, updateMetadata] = useState('');
   const [avgRatings, updateAvgRatings] = useState(0);
   const [darkMode, setDarkMode] = useState(false);

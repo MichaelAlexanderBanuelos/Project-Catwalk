@@ -13,11 +13,11 @@ const AnswerPicture = (props) => {
   const correct = () => currentPic.url;
 
   return (
-    <div widgetName="QA" style={{ paddingLeft: '30px' }}>
+    <div widgetname="QA" style={{ paddingLeft: '30px' }}>
       {props.answer.photos.length > 0 ? (
         <div className="answerImages">
           {props.answer.photos.map((image, index) => (
-            <div widgetName="QA" key={index}>
+            <div widgetname="QA" key={index}>
               <Modal
                 ariaHideApp={false}
                 isOpen={photoClicked}
@@ -26,11 +26,11 @@ const AnswerPicture = (props) => {
                 onRequestClose={() => setClicked(!photoClicked)}
                 contentLabel="Example Modal"
               >
-                <button widgetName="QA" className="buttonModal" onClick={() => { setClicked(!photoClicked); }}>X</button>
-                <img widgetName="QA" className="imgModal" src={correct(image)} alt="" key={index} />
+                <button widgetname="QA" className="buttonModal" onClick={() => { setClicked(!photoClicked); }}>X</button>
+                <img widgetname="QA" className="imgModal" src={correct(image)} alt="" key={index} />
 
               </Modal>
-              <img widgetName="QA" onClick={() => { selectedPhoto(image); }} className="img" src={image.url} alt="" key={index} />
+              <img widgetname="QA" onClick={() => { selectedPhoto(image); }} className="img" src={image.url} alt="" key={index} />
             </div>
           ))}
         </div>

@@ -148,7 +148,7 @@ function ImageGallery({
             onClick={() => (expandedGalleryView ? null : toggleGalleryView(true))}
           >
             {renderThumbnails()}
-            {/* EXPANDED VIEW */}
+
             <Modal widgetname="overview" id="expanded-gallery-modal" isOpen={expandedGalleryView} style={modalStyle} ariaHideApp={false}>
               <ExpandedView
                 close={() => toggleGalleryView(false)}
@@ -160,6 +160,7 @@ function ImageGallery({
                 forward={scrollForward}
               />
             </Modal>
+
             <div widgetname="overview" className="horizontal-arrow-container">
               <button widgetname="overview" role="button"
                className="horizontal-arrow" id={selectedPhotoIndex > 0 ? null : 'hidden'} onClick={(event) => { scrollBack(event); }}>

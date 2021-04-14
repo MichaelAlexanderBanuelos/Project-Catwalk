@@ -1,6 +1,5 @@
 node_modules
 
-
 config.js
 
 forever32.pem
@@ -8,3 +7,5 @@ forever32.pem
 bundle.js
 
 firebase.js
+
+coverage

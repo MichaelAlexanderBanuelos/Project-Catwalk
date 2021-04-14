@@ -10,11 +10,6 @@
   to {opacity: 0;}
 }
 
-/* for mobile css in theory. going to come back to this soon - site looks passable on mobile but would be better to give it a  different layout
-@media only screen and (max-width: 768px) {
-
-} */
-
 /* Banner.jsx */
 .banner-top {
   background-color: rgb(24,24,24);
@@ -34,7 +29,6 @@
   width: 100%;
   height: 75vh;
   margin: 0;
-  /* color: rgb(72,72,72); */
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -259,7 +253,6 @@
 }
 
 .expanded-view-image:hover {
-  /* cursor: crosshair; */
   cursor: url(icons/plus-icon.svg), auto
 }
 
@@ -447,22 +440,6 @@
   transition-duration: 0.25s;
 }
 
-.add-to-cart-dark {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid rgb(24,24,24);
-  box-shadow: 1px 1px 1px rgb(20,20,20);
-  border-radius: 0.25rem;
-  background-color: rgb(72,72,72);
-  color: rgb(240,240,240);
-  width: 84%;
-  height: 40px;
-  font-size: 1rem;
-  margin-right: 0.25rem;
-  transition-duration: 0.25s;
-}
-
 .add-to-cart-button:hover {
   background-color: rgb(255, 0, 140);
   border: 1px solid rgb(72,72,72);
@@ -564,7 +541,6 @@
 
 .feature-list li {
   list-style-type: none;
-  /* color: rgb(72,72,72); */
 }
 
 .product-slogan {

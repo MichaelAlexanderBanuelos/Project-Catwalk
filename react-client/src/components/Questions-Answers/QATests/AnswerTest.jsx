@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import header from '../../../../config.js';
-import AnswerModals from './AnswerModals.jsx';
-import AnswerPicture from './AnswerPicture.jsx';
+import header from '../../../../../config.js';
+import AnswerModals from '../AnswerModals.jsx';
+import AnswerPicture from '../AnswerPicture.jsx';
 
-const Answers = (props) => {
+const AnswerTest = (props) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicked, setHelpfulClicked] = useState([]);
   const [moreAnswers, setMoreAnswers] = useState(false);
@@ -16,7 +16,7 @@ const Answers = (props) => {
   }, [helpfulClicked, props.questionInfo]);
   let getAnswers = () => {
     const { id } = props;
-    axios.get(`/api/qa/questions/${id}/answers`)
+    axios.get(`/api/qa/answers`)
       .then((answersList) => {
         setAnswers(answersList.data.results);
       })
@@ -25,7 +25,7 @@ const Answers = (props) => {
   const increaseHelpfulness = (answer) => {
     const id = answer.answer_id || 11111;
     setHelpfulClicked((prevArray) => [...prevArray, id]);
-    axios.put(`/api/qa/answers/${id}/helpful`, null)
+    axios.put(`/api/qa/ahelpfulness`, null)
       .then(() => { getAnswers(); })
       .catch((err) => { console.log(err); });
   };
@@ -33,37 +33,37 @@ const Answers = (props) => {
   const reportAnswer = (answer) => {
     const id = answer.answer_id;
     setReport((prevArray) => [...prevArray, id])
-    axios.put(`/api/qa/answers/${id}/report`, null)
+    axios.put(`/api/qa/report`, null)
       .catch((err) => { console.log(err); });
   };
 
   const insertAnswers = (answer, index) => {
     const date = new Date(answer.date);
     return (
-      <div widgetname="QA" className="singleAnswer" key={index}>
+      <div widgetName="QA" className="singleAnswer" key={index}>
         <div className="dog">
-          <span widgetname="QA" className="aInAnswer">A: </span>
-          <div widgetname="QA">{answer.body}</div>
+          <span widgetName="QA" className="aInAnswer">A: </span>
+          <div widgetName="QA">{answer.body}</div>
         </div>
-        <div widgetname="QA">
+        <div widgetName="QA">
           <AnswerPicture answer={answer} key={index} />
         </div>
         {answer.answerer_name === 'Seller' ? (
-          <div widgetname="QA" className="AnswerHelp">
-            <p widgetname="QA" className="answerUser">
+          <div widgetName="QA" className="AnswerHelp">
+            <p widgetName="QA" className="answerUser">
               by {' '}
               <span style={{ fontWeight: 'bold' }}>{answer.answerer_name}</span>
               ,{' '}
               {date.toDateString().substring(4)}
             </p>
-            <div widgetname="QA" className="helpItem">
+            <div widgetName="QA" className="helpItem">
               {helpfulClicked.indexOf(answer.answer_id) < 0 ? (
                 <div>
                   {' '}
-                  <p widgetname="QA" onClick={() => { increaseHelpfulness(answer); }}>
+                  <p widgetName="QA" onClick={() => { increaseHelpfulness(answer); }}>
                     {' '}
                     Helpful?
-                    <span widgetname="QA" className="underline">Yes</span>
+                    <span widgetName="QA" className="underline">Yes</span>
                     {' '}
                     (
                     {answer.helpfulness}
@@ -76,7 +76,7 @@ const Answers = (props) => {
                 : (
                   <div>
                     {' '}
-                    <p widgetname="QA">
+                    <p widgetName="QA">
                       Helpful? Yes (
                       {answer.helpfulness}
                       )
@@ -85,12 +85,12 @@ const Answers = (props) => {
                   </div>
                 )}
             </div>
-            {report.indexOf(answer.answer_id) === -1 ? <div widgetname="QA" className="helpItem"><p onClick={() => { reportAnswer(answer); }} className="underline"> Report</p></div> : <div widgetname="QA" className="helpItem"><p>Reported</p></div>}
+            {report.indexOf(answer.answer_id) === -1 ? <div widgetName="QA" className="helpItem"><p onClick={() => { reportAnswer(answer); }} className="underline"> Report</p></div> : <div widgetName="QA" className="helpItem"><p>Reported</p></div>}
           </div>
         )
           : (
-            <div widgetname="QA" className="AnswerHelp">
-              <p widgetname="QA" className="answerUser">
+            <div widgetName="QA" className="AnswerHelp">
+              <p widgetName="QA" className="answerUser">
                 by {' '}
                 {answer.answerer_name}
                 , {' '}
@@ -101,12 +101,12 @@ const Answers = (props) => {
               </p>
               <div className="helpItem">
                 {helpfulClicked.indexOf(answer.answer_id) < 0 ? (
-                  <div widgetname="QA">
+                  <div widgetName="QA">
                     {' '}
-                    <p widgetname="QA" onClick={() => { increaseHelpfulness(answer); }}>
+                    <p widgetName="QA" onClick={() => { increaseHelpfulness(answer); }}>
                       {' '}
                       Helpful?
-                      <span widgetname="QA" className="underline">Yes</span>
+                      <span widgetName="QA" className="underline">Yes</span>
                       {' '}
                       (
                       {answer.helpfulness}
@@ -116,9 +116,9 @@ const Answers = (props) => {
                   </div>
                 )
                   : (
-                    <div widgetname="QA">
+                    <div widgetName="QA">
                       {' '}
-                      <p widgetname="QA">
+                      <p widgetName="QA">
                         Helpful? Yes (
                         {answer.helpfulness}
                         )
@@ -127,7 +127,7 @@ const Answers = (props) => {
                     </div>
                   )}
               </div>
-              {report.indexOf(answer.answer_id) === -1 ? <div widgetname="QA" className="helpItem"><p onClick={() => { reportAnswer(answer); }} className="underline"> Report</p></div> : <div widgetname="QA" className="helpItem"><p>Reported</p></div>}
+              {report.indexOf(answer.answer_id) === -1 ? <div widgetName="QA" className="helpItem"><p onClick={() => { reportAnswer(answer); }} className="underline"> Report</p></div> : <div widgetName="QA" className="helpItem"><p>Reported</p></div>}
             </div>
           )}
       </div>
@@ -135,22 +135,22 @@ const Answers = (props) => {
   };
 
   return (
-    <div widgetname="QA" className="AllAnswers">
+    <div widgetName="QA" className="AllAnswers">
       {!moreAnswers
         ? (
-          <div widgetname="QA" className="MoreAnswers">
+          <div widgetName="QA" className="MoreAnswers">
             {answers.slice(0, 2).map((answer, index) => insertAnswers(answer, index))}
-            {answers.length > 2 ? <button widgetname="QA" type="button" className="moreButton" onClick={() => { setMoreAnswers(!moreAnswers); }}>See more Answers</button> : null}
+            {answers.length > 2 ? <button widgetName="QA" type="button" className="moreButton" onClick={() => { setMoreAnswers(!moreAnswers); }}>See more Answers</button> : null}
           </div>
         )
         : (
-          <div widgetname="QA" className="MoreAnswers">
+          <div widgetName="QA" className="MoreAnswers">
             {answers.map((answer, index) => insertAnswers(answer, index))}
-            {answers.length > 2 ? <button widgetname="QA" type="button" className="moreButton" onClick={() => { setMoreAnswers(!moreAnswers); }}>Collpase answers</button> : null}
+            {answers.length > 2 ? <button widgetName="QA" type="button" className="moreButton" onClick={() => { setMoreAnswers(!moreAnswers); }}>Collpase answers</button> : null}
           </div>
         ) }
     </div>
   );
 };
 
-export default Answers;
+export default AnswerTest;

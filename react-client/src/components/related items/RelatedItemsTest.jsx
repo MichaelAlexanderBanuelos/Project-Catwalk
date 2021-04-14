@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const RelatedItems = () => {
-  const [styles, updateStyles] = useState([])
+  const [styles, updateStyles] = useState([]);
 
   useEffect(() => {
     getProductStyles()
@@ -16,6 +16,9 @@ const RelatedItems = () => {
 
   return (
     <div>
+      <h3>Related Products</h3>
+      <button onClick={() => (console.log('clicked'))}>Compare</button>
+      <p>{styles ? styles.category : 'waiting'}</p>
       <p>{styles ? styles.name : 'waiting'}</p>
       <p>{styles ? styles.original_price : 'waiting'}</p>
     </div>

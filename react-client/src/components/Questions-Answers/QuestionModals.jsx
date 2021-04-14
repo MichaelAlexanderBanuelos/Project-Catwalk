@@ -53,11 +53,11 @@ const QuestionModals = (props) => {
         onRequestClose={() => addClicked(!addClick)}
         contentLabel="Example Modal"
       >
-        <div className="QuestionModal">
+        <div widgetname="QA" className="QuestionModal">
           <div className="ModalHeader"><h1 style={{paddingTop:'5%'}}>Ask Your Question</h1> <h3>About the {props.product.name}</h3></div>
           <form onSubmit={submitHandler}>
             <div className="modalTitle">
-              <p>
+              <p widgetname="QA">
                 Your Question
                 <span style={{ color: 'red' }}>*</span>
               </p>
@@ -74,14 +74,14 @@ const QuestionModals = (props) => {
               <p style={{ fontStyle: 'italic' }}>For privacy reasons, do not use your full name or email address</p>
             </div>
             <div>
-              <p>
+              <p widgetname="QA">
                 Your Email
                 <span style={{ color: 'red' }}>*</span>
               </p>
               <label>
                 <input type="text" style={{ width: '80%' }} placeholder="Why did you like the product or not?" onChange={(e) => setEmail(e.target.value)} value={email} />
               </label>
-              <p style={{ fontStyle: 'italic' }}>For authentication reasons, you will not be emailed</p>
+              <p widgetname="QA" style={{ fontStyle: 'italic' }}>For authentication reasons, you will not be emailed</p>
             </div>
             <input style={{ borderRadius: '5px', height: '50px', width: '100px', float: 'right' }} type="submit" value="Submit" />
           </form>

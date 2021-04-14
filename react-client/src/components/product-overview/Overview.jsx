@@ -15,7 +15,7 @@ function Overview({
 }) {
   const [selectedStyle, selectStyle] = useState(0);
   const [price, updatePrice] = useState(0);
-  const [sale, updateSale] = useState(null);
+  const [sale, updateSale] = useState(0);
   const [photos, updatePhotos] = useState([]);
   const [selectedPhoto, selectPhoto] = useState('');
 
@@ -56,11 +56,13 @@ function Overview({
 Overview.propTypes = {
   product: PropTypes.object,
   avgRating: PropTypes.number,
+  darkMode: PropTypes.bool,
 };
 
 Overview.defaultProps = {
-  product: null,
+  product: {},
   avgRating: null,
+  darkMode: false,
 };
 
 export default Overview;

@@ -8,13 +8,12 @@ function YourOutfitList(props) {
   const [yourOutfit, updateYourOutfit] = useState([]);
   const [tempPhotoData, updateTempPhotoData] = useState([]);
   const [yourOutfitPhoto, updateYourOutfitPhoto] = useState([]);
-  const [yourOutfitRatings, updateYourOutfitRatings] = useState(0);
+  const [yourOutfitRatings, updateYourOutfitRatings] = useState([]);
 
   useEffect(() => {
     let currentProductId = props.currentProduct.id;
     axios.get(`/api/shared/products/${currentProductId}/styles`)
       .then((results) => (updateTempPhotoData(results.data)))
-      // .then(() => (console.log('from 7')))
       .catch((err) => (console.log(err)))
   }, [props.currentProduct, props.avgRating])
 
@@ -38,9 +37,12 @@ function YourOutfitList(props) {
     if (exists) {
       return null;
     } else {
+      console.log(yourOutfitRatings, props.currentProduct.id, props.avgRating)
       updateYourOutfit((yourOutfit) => ([props.currentProduct, ...yourOutfit]))
       updateYourOutfitPhoto((yourOutfitPhoto) => ([...yourOutfitPhoto, [Number(tempPhotoData.product_id), tempPhotoData.results[0].photos[0].thumbnail_url]]))
-      updateYourOutfitRatings((yourOutfitRatings) => ([...yourOutfitRatings, [props.currentProduct.id, props.avgRating]]))
+      let newYourOutfitRatings = yourOutfitRatings.map((arr) => arr)
+      newYourOutfitRatings.push([props.currentProduct.id, props.avgRating]);
+      updateYourOutfitRatings((newYourOutfitRatings))
     }
   };
 

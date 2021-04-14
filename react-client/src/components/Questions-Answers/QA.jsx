@@ -7,7 +7,7 @@ import Answers from './Answers.jsx';
 const QA= (props) => {
 
   return (
-    <div widgetName="QA" style={{marginBottom: "2em", marginTop: "2em"}}>
+    <div widgetname="QA" style={{marginBottom: "2em", marginTop: "2em"}}>
       <Questions currentProduct = {props.currentProduct}/>
     </div>
   )

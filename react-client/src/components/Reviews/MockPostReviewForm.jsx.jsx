@@ -4,7 +4,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import header from '../../../../config.js';
 
-const PostReviewForm = (props) => {
+const MockPostReviewForm = (props) => {
   const [imageModalIsOpen, setImageModalIsOpen] = useState(false);
   const [postModalIsOpen, setPostModalIsOpen] = useState(true);
   const [rating, setRating] = useState(0);
@@ -110,7 +110,7 @@ const PostReviewForm = (props) => {
       alert('You must enter the following: Email');
     } else {
       setPostModalIsOpen(!postModalIsOpen);
-      axios.post(`/api/reviews/`, reviewPost)
+      axios.post('/api/reviews/', reviewPost)
         .then((data) => {
           alert('submitted a new review');
           props.getReviews();
@@ -292,4 +292,4 @@ const PostReviewForm = (props) => {
   );
 };
 
-export default PostReviewForm;
+export default MockPostReviewForm;
