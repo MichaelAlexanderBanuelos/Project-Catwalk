@@ -57,6 +57,7 @@ function App() {
     const id = 16060;
     axios.get(`/api/shared/products/${id}`)
       .then((data) => {
+        console.log(data)
         updateSelectedProduct(data.data);
       })
       .then(() => (getRatings()))
@@ -112,10 +113,10 @@ function App() {
                 currentProduct={selectedProduct}
                 findAvgRating={findAvgRating}
               />
-              <QA
+              {/* <QA
                 clickTracker={clickTracker}
                 currentProduct={selectedProduct}
-              />
+              /> */}
               <Reviews
                 clickTracker={clickTracker}
                 avgRating={avgRatings}
