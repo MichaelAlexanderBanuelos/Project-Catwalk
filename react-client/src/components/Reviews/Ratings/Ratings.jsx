@@ -16,16 +16,16 @@ const Ratings = (props) => {
   }, [props.metadata]);
 
   const findPercentagePerRating = () => {
-    let percentages = [0, 0, 0, 0, 0, 0];
-    let ratings = props.metadata.ratings;
+    const percentages = [0, 0, 0, 0, 0, 0];
+    const { ratings } = props.metadata;
     let totalVotes = 0;
-    for (let scoreKey in ratings) {
+    for (const scoreKey in ratings) {
       totalVotes += Number(ratings[scoreKey]);
     }
 
-    for (let key in ratings) {
-      let percentage = Math.round((Number(ratings[key]) / totalVotes) * 100);
-      percentages[key] = percentage
+    for (const key in ratings) {
+      const percentage = Math.round((Number(ratings[key]) / totalVotes) * 100);
+      percentages[key] = percentage;
     }
     setPercentagePerRating(percentages);
   };
@@ -42,8 +42,8 @@ const Ratings = (props) => {
     if (props.metadata.recommended.false) {
       falseVotes = Number(props.metadata.recommended.false);
     }
-    let totalVotes = trueVotes + falseVotes;
-    let res = Math.round((trueVotes / totalVotes) * 100);
+    const totalVotes = trueVotes + falseVotes;
+    const res = Math.round((trueVotes / totalVotes) * 100);
     if (totalVotes === 0) {
       setRecommendedPercent(0);
     } else {
@@ -57,11 +57,15 @@ const Ratings = (props) => {
         RATINGS
         & REVIEWS
       </div>
-      <div widgetname="reviews" className="ratings-breakdown" style={{display: 'flex', flexDirection: 'rows'}} >
-       <div widgetname="reviews" id="average-rating-in-ratings" > {props.avgRating.toFixed(1)} </div>
-       <div widgetname="reviews" style={{marginLeft: '3%'}} >
+      <div widgetname="reviews" className="ratings-breakdown" style={{ display: 'flex', flexDirection: 'rows' }}>
+        <div widgetname="reviews" id="average-rating-in-ratings">
+          {' '}
+          {props.avgRating.toFixed(1)}
+          {' '}
+        </div>
+        <div widgetname="reviews" style={{ marginLeft: '3%' }}>
           <Stars avgRating={props.avgRating} />
-       </div>
+        </div>
       </div>
       <div widgetname="reviews" id="recommended" className="ratings-breakdown">
         {recommendedPercent}
@@ -69,9 +73,11 @@ const Ratings = (props) => {
       </div>
       <RatingsBreakdownList
         manipulateFilters={props.manipulateFilters}
-        percentagePerRating={percentagePerRating}/>
+        percentagePerRating={percentagePerRating}
+      />
       <CharacteristicsList
-        characteristics={props.characteristicsArr}/>
+        characteristics={props.characteristicsArr}
+      />
     </div>
   );
 };

@@ -114,7 +114,6 @@ const MockPostReviewForm = (props) => {
         .then((data) => {
           alert('submitted a new review');
           props.getReviews();
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -267,7 +266,8 @@ const MockPostReviewForm = (props) => {
               </div>
             </label>
           </div>
-          <button widgetname="reviews"
+          <button
+            widgetname="reviews"
             className="review-buttons"
             onClick={(e) => {
               e.preventDefault();

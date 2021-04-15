@@ -110,11 +110,10 @@ const PostReviewForm = (props) => {
       alert('You must enter the following: Email');
     } else {
       setPostModalIsOpen(!postModalIsOpen);
-      axios.post(`/api/reviews/`, reviewPost)
+      axios.post('/api/reviews/', reviewPost)
         .then((data) => {
           alert('submitted a new review');
           props.getReviews();
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -267,7 +266,8 @@ const PostReviewForm = (props) => {
               </div>
             </label>
           </div>
-          <button widgetname="reviews"
+          <button
+            widgetname="reviews"
             className="review-buttons"
             onClick={(e) => {
               e.preventDefault();
