@@ -68,7 +68,7 @@ The Review section displays the reviews for the current product. The reviews sec
 
 Styling for the Reviews section was done purely with raw css.
 
-# Functionality
+### Functionality
 - Reviews can be filtered by star rating
 - Reviews can be searched by keyword, on search the word will be highlighted yellow when found
 - Reviews can be added, and marked helpful/unhelpful
