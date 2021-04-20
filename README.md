@@ -64,6 +64,13 @@ This component extends the ability to view and search questions, ask questions, 
 
 
 ## Reviews
-The reviews section displays the reviews for the current product. There is functionality to add a new review and will display two reviews by default. Clicking the button to add more reviews will load two more reviews onto the page. 
-In addition to the reviews section there is also a subsection for the ratings for that current product. The ratings section will give a breakdown of the percentages chosen for each star rating. The ratings section will also display a chart that shows the score each characteristic got. 
+The Review section displays the reviews for the current product. The reviews section makes use of reusable React components in combination with React Hooks. 
 
+Styling for the Reviews section was done purely with raw css.
+
+# Functionality
+- Reviews can be filtered by star rating
+- Reviews can be searched by keyword, on search the word will be highlighted yellow when found
+- Reviews can be added, and marked helpful/unhelpful
+- Reviews can be deleted
+- Reviews can be sorted by helpfulness as well as most recent
